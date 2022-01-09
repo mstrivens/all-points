@@ -1,5 +1,14 @@
 # all-points
 
+## Current progress
+
+Pulled Google map api in using @point-hub/vue-google-maps - https://github.com/point-hub/vue-google-maps/blob/main/src/vue-google-maps/MapLoader.vue
+Created method to get user location
+
+Trying to implement refreshing map once user location found.
+Currently not able to do this
+Usually done using gmap or built in keyword
+
 # Project Planning
 
 ## Modelling

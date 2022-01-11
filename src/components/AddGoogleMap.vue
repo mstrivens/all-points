@@ -2,21 +2,21 @@
   <div>
     <h1>AddGoogleMapsComponent</h1>
     <p>apiKey: {{apiKey}}</p>
-    <vue-google-maps
+    <GoogleMapLoader
         style="width: 100%; height: 300px"
         :map-config="mapConfig"
         :api-key="apiKey">
-    </vue-google-maps>
+    </GoogleMapLoader>
     <p>mapConfig: {{mapConfig}}</p>
   </div>
 </template>
 
 <script>
-    import VueGoogleMaps from "@point-hub/vue-google-maps";
+    import GoogleMapLoader from "./GoogleMapLoader.vue";
 
     export default {
         components: {
-            VueGoogleMaps
+            GoogleMapLoader
         },
 
         data() {

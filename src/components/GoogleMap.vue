@@ -6,6 +6,12 @@
         style="width: 100%; height: 300px"
         :map-config="mapConfig"
         :api-key="apiKey">
+        <GoogleMapMarker
+            v-for="marker in markers"
+            :key="marker.id"
+            :marker="marker"
+            :google="google"
+            :map="map"/>
     </GoogleMapLoader>
     <p>mapConfig: {{mapConfig}}</p>
   </div>
@@ -13,10 +19,12 @@
 
 <script>
     import GoogleMapLoader from "./GoogleMapLoader.vue";
+    import GoogleMapMarker from "./GoogleMapMarker.vue";
 
     export default {
         components: {
-            GoogleMapLoader
+            GoogleMapLoader,
+            GoogleMapMarker
         },
 
         data() {
@@ -31,7 +39,8 @@
                 },
                 locationMarkers: [],
                 locPlaces: [],
-                existingPlace: null
+                existingPlace: null,
+                markers: [{ id: "a", position: { lat: -51.51, lng: -0.2}}]
             }
         },
 

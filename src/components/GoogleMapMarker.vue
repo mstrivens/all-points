@@ -1,7 +1,18 @@
-
+<template>
+    <div>
+        <img="chargerLogo"/>
+    </div>
+</template>
 
 <script>
+    import { chargerLogo } from '../assets/Icons.js'
+
     export default {
+        data() {
+            return {
+                chargerLogo
+            }
+        },
         props: {
             google: {
                 type: Object,
@@ -21,7 +32,7 @@
             new this.google.maps.Marker({
                 position: this.marker.position,
                 marker: this.marker,
-                map: this.map
+                map: this.map,
             })
         }
     }

@@ -5,13 +5,14 @@
     <GoogleMapLoader
         style="width: 100%; height: 300px"
         :map-config="mapConfig"
-        :api-key="apiKey">
+        :api-key="apiKey"
+        @google-map-updated="googleMapsUpdated">
         <GoogleMapMarker
             v-for="marker in markers"
             :key="marker.id"
             :marker="marker"
-            :google="google"
-            :map="map"/>
+            :map="map"
+            :google="google"/>
     </GoogleMapLoader>
     <p>mapConfig: {{mapConfig}}</p>
   </div>
@@ -40,7 +41,9 @@
                 locationMarkers: [],
                 locPlaces: [],
                 existingPlace: null,
-                markers: [{ id: "a", position: { lat: -51.51, lng: -0.2}}]
+                markers: [{ id: "a", position: { lat: 51.0, lng: -0.2 }}],
+                map: null,
+                google: null
             }
         },
 
@@ -64,6 +67,13 @@
                     console.log(this.mapConfig.center)
                 })
             },
+            googleMapsUpdated(e) {
+                console.log("googleMapsUpdated:", e)
+                this.map = e.map
+                console.log("this.map:", this.map)
+                this.google = e.google
+                console.log("this.google:", this.google)
+            }
         }
     }
 </script>

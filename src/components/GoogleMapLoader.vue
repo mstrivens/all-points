@@ -12,7 +12,7 @@ export default {
         mapConfig: {
             type: Object,
             required: true
-    },
+        },
         apiKey: {
             type: String,
             required: true
@@ -37,6 +37,8 @@ export default {
         }).then(google => {
             this.google = google;
             this.initializeMap();
+            // this.emitGoogleData()
+            // this.emitMapData()
         });
     },
     watch: {
@@ -57,7 +59,13 @@ export default {
                 map: this.Newmap,
                 google: this.google
             });
-        }
+        },
+        // emitGoogleData() {
+        //     this.$emit('google-map-data', this.google)
+        // },
+        // emitMapData() {
+        //     this.$emit('map-data', this.map)
+        // }
     }
 };
 </script>

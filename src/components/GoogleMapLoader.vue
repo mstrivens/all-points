@@ -1,13 +1,12 @@
 <template>
   <div>
     <div id="map" style="width:100%;height:100%"></div>
-    <h1>{{config}}</h1>
   </div>
 </template>
 
 <script>
 import GoogleMapsApi from "@point-hub/google-maps-api";
-import { ref } from 'vue';
+
 export default {
   props: {
     mapConfig: {
@@ -28,7 +27,7 @@ export default {
     return {
       google: null,
       map: null,
-      config: ref(this.mapConfig)
+      config: this.mapConfig.center.lat
     };
   },
   mounted() {
@@ -41,9 +40,12 @@ export default {
     });
   },
   watch: {
-      config() {
-          console.log("mapConfig changed in MapLoader")
-          this.initializeMap();
+      mapConfig: {
+          handler: function() {
+              console.log("mapConfig changed in MapLoader")
+              this.initializeMap();
+          },
+          deep: true
       }
   },
   methods: {

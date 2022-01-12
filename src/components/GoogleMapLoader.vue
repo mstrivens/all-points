@@ -60,12 +60,6 @@ export default {
                 google: this.google
             });
         },
-        // emitGoogleData() {
-        //     this.$emit('google-map-data', this.google)
-        // },
-        // emitMapData() {
-        //     this.$emit('map-data', this.map)
-        // }
     }
 };
 </script>

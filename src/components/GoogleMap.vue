@@ -7,14 +7,17 @@
         :map-config="mapConfig"
         :api-key="apiKey"
         @google-map-updated="googleMapsUpdated">
-        <GoogleMapMarker
-            v-for="marker in markers"
-            :key="marker.id"
-            :marker="marker"
-            :map="map"
-            :google="google"/>
+        <template>
+            <GoogleMapMarker
+                v-for="marker in markers"
+                :key="marker.id"
+                :marker="marker"
+                :map="map"
+                :google="google"/>
+        </template>
     </GoogleMapLoader>
     <p>mapConfig: {{mapConfig}}</p>
+    <p>markers: {{ markers }}</p>
   </div>
 </template>
 
@@ -41,7 +44,7 @@
                 locationMarkers: [],
                 locPlaces: [],
                 existingPlace: null,
-                markers: [{ id: "a", position: { lat: 51.0, lng: -0.2 }}],
+                markers: [{ id: "a", position: { lat: 51.5186395, lng: -0.2153888 }}],
                 map: null,
                 google: null
             }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img="chargerLogo"/>
+        {{ chargerLogo }}
     </div>
 </template>
 
@@ -29,11 +29,14 @@
         },
 
         mounted() {
+            console.log("Created starting in Map MArker")
             new this.google.maps.Marker({
                 position: this.marker.position,
                 marker: this.marker,
                 map: this.map,
+                icon: this.chargerLogo,
             })
+            console.log("mounted run in Map Marker")
         }
     }
 </script>

@@ -6,8 +6,8 @@
 
 <script>
 import GoogleMapsApi from "@point-hub/google-maps-api";
-
 export default {
+
     props: {
         mapConfig: {
             type: Object,
@@ -27,7 +27,7 @@ export default {
         return {
             google: null,
             map: null,
-            config: this.mapConfig.center.lat
+            config: this.mapConfig.center.lat,
         };
     },
     mounted() {

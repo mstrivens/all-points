@@ -1,9 +1,8 @@
 <template>
     <div>
-        {{ chargerLogo }}
+        GOOGLE MAPS MARKER TEMPLATE
     </div>
 </template>
-
 <script>
     import { chargerLogo } from '../assets/Icons.js'
 
@@ -25,17 +24,39 @@
             marker: {
                 type: Object,
                 required: true
+            },
+            mapUpdated: {
+                type: Object
             }
         },
 
+        watch: {
+            mapInit() {
+                console.log("google prop puled into marker")
+                this.initializeMarker()
+            }
+
+        },
+
+        computed: {
+            mapInit() {
+                return this.mapUpdated
+            }
+        },
+
+        methods: {
+            initializeMarker() {
+                console.log("Initialize Marker run")
+                new this.google.maps.Marker({
+                    position: this.marker.position,
+                    marker: this.marker,
+                    map: this.map
+                })
+            },
+        },
+
         mounted() {
-            console.log("Created starting in Map MArker")
-            new this.google.maps.Marker({
-                position: this.marker.position,
-                marker: this.marker,
-                map: this.map,
-                icon: this.chargerLogo,
-            })
+            this.initializeMarker()
             console.log("mounted run in Map Marker")
         }
     }

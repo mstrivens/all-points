@@ -7,7 +7,7 @@
         :map-config="mapConfig"
         :api-key="apiKey"
         @google-map-updated="googleMapsUpdated">
-        <template>
+        <template v-if='updated'>
             <GoogleMapMarker
                 v-for="marker in markers"
                 :key="marker.id"
@@ -16,6 +16,15 @@
                 :google="google"/>
         </template>
     </GoogleMapLoader>
+    <template v-if='map'>
+        <GoogleMapMarker
+            v-for="marker in markers"
+            :key="marker.id"
+            :marker="marker"
+            :map="map"
+            :google="google"
+            :mapUpdated="updated"/>
+    </template>
     <p>mapConfig: {{mapConfig}}</p>
     <p>markers: {{ markers }}</p>
   </div>
@@ -46,7 +55,8 @@
                 existingPlace: null,
                 markers: [{ id: "a", position: { lat: 51.5186395, lng: -0.2153888 }}],
                 map: null,
-                google: null
+                google: null,
+                updated: {}
             }
         },
 
@@ -55,8 +65,10 @@
         },
 
         watch: {
-            locateGeoLocation() {
-                this.mapConfig.zoom
+            mapConfig: {
+                handler: function() {
+                    this.mapConfig.zoom
+                }
             }
         },
 
@@ -67,7 +79,8 @@
                         lat: res.coords.latitude,
                         lng: res.coords.longitude
                     }
-                    console.log(this.mapConfig.center)
+                    this.updated = this.mapConfig
+                    return this.mapConfig
                 })
             },
             googleMapsUpdated(e) {
